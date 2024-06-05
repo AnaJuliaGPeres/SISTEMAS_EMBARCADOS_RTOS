@@ -1,4 +1,4 @@
-# SISTEMAS_EMBARCADOS_RTOS
+# Atividade de Sistemas Embarcados:
 
 
 ## Atividade realizada em sala de aula, instalando o modelo do nodemcu no proteus e tambem realizando as prototipações. Segue print da ativiade realizada validando o projeto no modelo esquemático, 3d e PCB:
