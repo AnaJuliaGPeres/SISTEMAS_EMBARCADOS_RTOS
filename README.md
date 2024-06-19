@@ -36,19 +36,33 @@ Conexão: Um cliente se conecta ao broker usando um protocolo TCP/IP. Ele pode f
 Publicação: Um cliente publica uma mensagem em um tópico específico. A mensagem é enviada ao broker, que a encaminha para todos os clientes que assinaram esse tópico.
 Assinatura: Um cliente assina um ou mais tópicos para receber mensagens. Ele pode usar curingas para se inscrever em vários tópicos de uma vez (ex: "casa/+/temperatura" ou "casa/#").
 
+### Codigo feito no VSCODE
+
+##### Inclusão de Bibliotecas
+
 ```sh
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+```
 
-const char* ssid = "AndroidAP ";
-const char* password = "nssa9988";
-const char* mqtt_server = "192.168.14.69";
+#### Declaração de Constantes e Variáveis
+```sh
+
+const char* ssid = "AndroidAP "; - rede wifi
+const char* password = "nssa9988"; - senha 
+const char* mqtt_server = "192.168.14.69"; - ip da maquina
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 const int Relay = D1;
+```
 
+#### Função setup_wifi
+
+Conecta o ESP8266 à rede Wi-Fi utilizando as credenciais fornecidas.
+Imprime no serial monitor o processo de conexão e o endereço IP atribuído.
+```sh
 void setup_wifi() {
   delay(10);
   Serial.println();
@@ -64,7 +78,17 @@ void setup_wifi() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 }
+```sh
 
+#### Função callback
+
+Função de callback que é chamada quando uma mensagem é recebida.
+Imprime o tópico e a mensagem recebida.
+Converte a mensagem recebida em uma String.
+Se a mensagem for "ON", ativa o relé (define o pino como LOW).
+Se a mensagem for "OFF", desativa o relé (define o pino como HIGH)
+
+```sh
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
@@ -83,7 +107,15 @@ void callback(char* topic, byte* payload, unsigned int length) {
     }
   }
 }
+```
 
+### Função setup
+Configura o pino do relé como saída.
+Inicializa a comunicação serial.
+Conecta ao Wi-Fi chamando setup_wifi.
+Configura o servidor MQTT e define a função de callback para tratar as mensagens recebidas.
+
+```sh
 void setup() {
   pinMode(Relay, OUTPUT);
   Serial.begin(9600);
@@ -91,7 +123,13 @@ void setup() {
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
 }
+```
+### Função reconnect
+Tenta reconectar ao servidor MQTT caso a conexão seja perdida.
+Quando conectado, se inscreve no tópico "ControleRelay".
+Imprime no serial monitor o estado da conexão e tenta reconectar a cada 5 segundos se falhar.
 
+```sh
 void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
@@ -106,18 +144,24 @@ void reconnect() {
     }
   }
 }
+```
 
+### Função loop
+Verifica se o cliente MQTT está conectado.
+Se não estiver conectado, chama reconnect para tentar reconectar.
+Chama client.loop() para manter a comunicação com o servidor MQTT e processar as mensagens recebidas.
+
+```sh
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
 }
+```
 
-´´´
 
-
-### Pritns da Atividade:
+### Prints da Atividade:
 
 ### --- BROKER
 
