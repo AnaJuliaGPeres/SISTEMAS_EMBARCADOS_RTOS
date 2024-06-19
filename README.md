@@ -36,7 +36,8 @@ Conexão: Um cliente se conecta ao broker usando um protocolo TCP/IP. Ele pode f
 Publicação: Um cliente publica uma mensagem em um tópico específico. A mensagem é enviada ao broker, que a encaminha para todos os clientes que assinaram esse tópico.
 Assinatura: Um cliente assina um ou mais tópicos para receber mensagens. Ele pode usar curingas para se inscrever em vários tópicos de uma vez (ex: "casa/+/temperatura" ou "casa/#").
 
-```  #include <Arduino.h>
+```sh
+#include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
@@ -111,7 +112,8 @@ void loop() {
     reconnect();
   }
   client.loop();
-} ´´´
+}
+´´´sh
 
 
 ### Pritns da Atividade:
