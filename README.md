@@ -111,19 +111,22 @@ void loop() {
     reconnect();
   }
   client.loop();
-}  ```sh
+}  ```
 
 
 ### Pritns da Atividade:
 
 ### --- BROKER
+
 ![image](https://github.com/AnaJuliaGPeres/SISTEMAS_EMBARCADOS_RTOS/assets/126435035/5969d666-55f4-481d-8842-6a3dc6a16518)
 
 
 ### ---SUBSCRIBE
+
 ![image](https://github.com/AnaJuliaGPeres/SISTEMAS_EMBARCADOS_RTOS/assets/126435035/856ca7a6-f5d4-4341-8a9f-e081b1aa39e3)
 
 ### --- PUBLISH
+
 ![image](https://github.com/AnaJuliaGPeres/SISTEMAS_EMBARCADOS_RTOS/assets/126435035/b4ab7c09-f4aa-494a-9fe7-9c0d0a009fd8)
 
 ### RECEBENDO A MENSAGEM NO VSCODE:
