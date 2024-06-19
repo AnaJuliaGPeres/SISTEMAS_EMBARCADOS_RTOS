@@ -111,8 +111,7 @@ void loop() {
     reconnect();
   }
   client.loop();
-}
- ´´´
+} ´´´
 
 
 ### Pritns da Atividade:
