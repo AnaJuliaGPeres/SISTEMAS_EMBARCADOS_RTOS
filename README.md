@@ -81,8 +81,6 @@ void setup_wifi() {
 
 ```
 
-```sh
-
 #### Função callback
 
 Função de callback que é chamada quando uma mensagem é recebida.
