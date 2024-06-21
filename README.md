@@ -78,6 +78,9 @@ void setup_wifi() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 }
+
+```
+
 ```sh
 
 #### Função callback
